@@ -4,7 +4,9 @@
     @if (Auth::check())
         <p>ログインユーザー：{{ Auth::user()->name }}</p>
         
-        @include('cats.form')
+        {!!link_to_route('cats.form','猫を譲る')!!}
+        
+        <h2>自分の投稿</h2>
         @include('cats.cats')
     @else
         <div class="center jumbotron">

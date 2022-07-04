@@ -21,6 +21,7 @@ Route::post('login', 'Auth\LoginController@login')->name('login.post');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 
 Route::get('/','CatsController@index');
+Route::get('create','CatsController@create')->name('cats.form');
 
 Route::group(['middleware'=>['auth']],function(){
     Route::get('users','UsersController@index')->name('users.index');
@@ -30,7 +31,13 @@ Route::group(['middleware'=>['auth']],function(){
     
     Route::group(['prefix'=>'uses/{id}'],function(){
         Route::post('favorite','UserCatsController@store')->name('favorite');
-        Route::delete('favolite.{id}','UserCatsController@destroy')->name('unfavorite');
+        Route::delete('favolite','UserCatsController@destroy')->name('unfavorite');
+        Route::get('favorites','UserCatsController@index')->name('favorites');
+    });
+    
+    Route::group(['prefix'=>'cats/{id}'],function(){
+        Route::post('messages','MessagesController@store')->name('post.messages');
+        Route::get('messages','MessagesController@messageboard')->name('messageboard');
     });
 });
 

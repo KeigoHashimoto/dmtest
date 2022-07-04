@@ -25,13 +25,17 @@ class CatsController extends Controller
         return view('welcome',$data);
     }
     
+    public function create(){
+        return view('cats.create');
+    }
+    
     public function store(Request $request){
         $request->user()->cats()->create([
             'name'=>$request->name,
             'age'=>$request->age,
             'content'=>$request->content,
             ]);
-            return back();
+        return redirect('/');
     }
     
     public function destroy($id){
@@ -42,6 +46,4 @@ class CatsController extends Controller
         };
         return back();
     }
-    
-    
 }

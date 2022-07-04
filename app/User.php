@@ -37,9 +37,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     
+    //catsと一対多
+    
     public function cats(){
         return $this->hasMany('App\Cat');
     }
+    
+    //fovorite機能
     
     public function favorites(){
         return $this->belongsToMany('App\Cat','user_cats','user_id','cat_id');
@@ -69,6 +73,12 @@ class User extends Authenticatable
     
     public function is_favorite($catId){
         return $this->favorites()->where('cat_id',$catId)->exists();
+    }
+    
+    //messagesと一対多
+    
+    public function messages(){
+        return $this->hasMany('App\Message');
     }
     
     

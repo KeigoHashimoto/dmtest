@@ -13,11 +13,15 @@
                 @if (Auth::check())
                     {{-- ユーザ一覧ページへのリンク --}}
                     <li class="nav-item">{!!link_to_route('users.index','ユーザー一覧',[],['class'=>'nav-link'])!!}</li>
+                    {{--猫投稿作成ページへのリンク--}}
+                    <li class="nav-item">{!!link_to_route('cats.form','猫を譲る',[],['class'=>'nav-link'])!!}</li>
+                    
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }}</a>
                         <ul class="dropdown-menu dropdown-menu-right">
                             {{-- ユーザ詳細ページへのリンク --}}
                             <li class="dropdown-item"><a href="#">My profile</a></li>
+                            <li class="dropdown-item">{!! link_to_route('favorites','お気に入り',[Auth::user()->id])!!}</li>
                             <li class="dropdown-divider"></li>
                             {{-- ログアウトへのリンク --}}
                             <li class="dropdown-item">{!! link_to_route('logout.get', 'Logout') !!}</li>
